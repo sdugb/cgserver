@@ -1,0 +1,18 @@
+version: '2'
+services:
+  gbmongo:
+    image: mongo
+    volumes:
+      - STORAGEDIR:/data
+    ports:
+      - MONGODBPORT:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=ADMINUSER
+      - MONGO_INITDB_ROOT_PASSWORD=ADMINPASSWORD
+      - MONGO_INITDB_DATABASE=INITDATABASE
+  gbnode:
+    image: some-node
+    ports:
+      - NODEPORT:3600
+    links:
+      - gbmongo:gbmongo

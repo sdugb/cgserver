@@ -1,0 +1,10 @@
+FROM node
+ 
+ADD ./server.tar /home/node
+COPY ./config.js /home/node
+ 
+RUN cd /home/node; npm install
+ 
+EXPOSE 3600
+ 
+CMD ["node","/home/node/server.js"]
